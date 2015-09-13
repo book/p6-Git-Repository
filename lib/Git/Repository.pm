@@ -16,5 +16,11 @@ class Git::Repository {
         }
 
     }
+
+    # pseudo code handling git => (param list) consistently without need of ,
+    # handles git => (666), git => (a => 42), git => (666, a => 42) correctly
+    multi method run(:$init!, List() :$git) {
+        git( |$git.Capture );
+    }
 }
 
